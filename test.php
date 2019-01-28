@@ -45,13 +45,25 @@
         replyMsg($arrayHeader,$arrayPostData);
     }
     #ตัวอย่าง Message Type "Text + Sticker ใน 1 ครั้ง"
-    else if($message == "ลาก่อน"){
+    else if($message == "ลาก่อน", "ลาก่อย"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
         $arrayPostData['messages'][1]['type'] = "sticker";
         $arrayPostData['messages'][1]['packageId'] = "1";
         $arrayPostData['messages'][1]['stickerId'] = "131";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    else if($message == "Temperature"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "Temperature = ??.?C";
+        replyMsg($arrayHeader,$arrayPostData);
+    }
+    else if($message == "Humidity"){
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "Humidity = ??.?%";
         replyMsg($arrayHeader,$arrayPostData);
     }
 function replyMsg($arrayHeader,$arrayPostData){
